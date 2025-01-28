@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.OpenApi.Models;
 using SwaggerWebApp.IService;
 using SwaggerWebApp.Service;
@@ -22,6 +24,13 @@ namespace SwaggerWebApp
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+            builder.Services.AddControllers().AddXmlSerializerFormatters();
+
+            //builder.Services.AddControllers(options =>
+            //{
+            //    options.Conventions.Add(new Microsoft.AspNetCore.Mvc.ApplicationModels.ApiConventionTypeAttribute(typeof(DefaultApiConventions)));
+            //});
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

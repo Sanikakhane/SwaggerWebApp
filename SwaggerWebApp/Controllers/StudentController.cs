@@ -7,12 +7,17 @@ using Microsoft.AspNetCore.Http;
 
 namespace SwaggerWebApp.Controllers
 {
+
+
+    [Produces("application/json", "application/xml")] // Content negotiation
     [Route("api/students")]
     [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;
 
+        
         public StudentController()
         {
             _studentService = new StudentService();
@@ -24,8 +29,11 @@ namespace SwaggerWebApp.Controllers
         /// <returns>List of students</returns>
         //[ProducesResponseType(StatusCodes.Status404NotFound)]
         //[ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet] 
-        public List<Student> GetStudents()
+
+        //[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        [HttpGet]
+  
+        public List<Student> Get()
         {
             return _studentService.GetStudents();
         }
@@ -35,10 +43,10 @@ namespace SwaggerWebApp.Controllers
         /// </summary>
         /// <param name="id">Student ID</param>
         /// <returns>Student object</returns>
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{id}")]
-        public Student GetStudent(string id)
+        public Student Get(string id)
         {
             return _studentService.GetStudent(id);
         }
@@ -49,7 +57,7 @@ namespace SwaggerWebApp.Controllers
         /// <param name="student">Student object</param>
         /// <returns>Success message</returns>
         [HttpPost]
-        public IActionResult SaveOrUpdate([FromBody] Student student)
+        public IActionResult Post([FromBody] Student student)
         {
             _studentService.SaveOrUpdate(student);
             return Ok("Student saved or updated successfully.");
@@ -75,7 +83,7 @@ namespace SwaggerWebApp.Controllers
         /// <param name="student">Student object</param>
         /// <returns>Success message</returns>
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody] Student student)
+        public IActionResult Put(string id, [FromBody] Student student)
         {
             student.Id = id;
             _studentService.SaveOrUpdate(student);
