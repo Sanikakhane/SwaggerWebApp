@@ -35,7 +35,7 @@ namespace SwaggerWebApp.Service
             //count = (int)_studentTable.CountDocuments(FilterDefinition<Student>.Empty);
             //Console.WriteLine(count);
 
-            return _studentTable.Find(FilterDefinition<Student>.Empty).Sort(Builders<Student>.Sort.Ascending(s => s.Roll)).ToList();
+            return _studentTable.Find(FilterDefinition<Student>.Empty).ToList();
 
         }
 
@@ -77,6 +77,9 @@ namespace SwaggerWebApp.Service
             return GroupedStudents;
         }
 
-
+        public List<Student> GetStudentsInSortedOrder()
+        {
+            return _studentTable.Find(FilterDefinition<Student>.Empty).Sort(Builders<Student>.Sort.Ascending(s => s.Roll)).ToList();
+        }
     }
 }

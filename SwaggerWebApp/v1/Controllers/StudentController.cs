@@ -4,14 +4,16 @@ using SwaggerWebApp.IService;
 using SwaggerWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Asp.Versioning;
 
-namespace SwaggerWebApp.Controllers
+namespace SwaggerWebApp.v1.Controllers
 {
 
 
     [Produces("application/json", "application/xml")] // Content negotiation
     [Route("api/students")]
     [ApiController]
+    [ApiVersion("1.0")]
     [ApiConventionType(typeof(DefaultApiConventions))]
     public class StudentController : Controller
     {
