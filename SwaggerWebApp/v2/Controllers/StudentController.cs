@@ -13,7 +13,7 @@ namespace SwaggerWebApp.v2.Controllers
     [Produces("application/json", "application/xml")] // Content negotiation
     [Route("api/students")]
     [ApiController]
-    [ApiVersion("2.0")]
+    [ApiVersion("2.0" ,Deprecated = true) ]
     [ApiConventionType(typeof(DefaultApiConventions))]
     public class StudentController : Controller
     {
@@ -26,7 +26,7 @@ namespace SwaggerWebApp.v2.Controllers
         }
 
         /// <summary>
-        /// Gets all students.
+        /// Gets all students in sorted order.
         /// </summary>
         /// <returns>List of students</returns>
         //[ProducesResponseType(StatusCodes.Status404NotFound)]

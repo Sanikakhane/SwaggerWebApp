@@ -14,5 +14,7 @@ namespace SwaggerWebApp.Models
         public string Name { get; set; } = "";
         public string Roll { get; set; } = "";
         public int Age { get; set; } = 0;
+
+        public List<Course> Courses { get; set; } = new List<Course>();
     }
 }

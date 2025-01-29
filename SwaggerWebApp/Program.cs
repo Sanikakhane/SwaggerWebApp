@@ -39,7 +39,7 @@ namespace SwaggerWebApp
                 o.ReportApiVersions = true;
                 o.ApiVersionReader = ApiVersionReader.Combine(
                     new QueryStringApiVersionReader("api-version"),
-                    new HeaderApiVersionReader("X-Version"),
+                    //new HeaderApiVersionReader("X-Version"),
                     new MediaTypeApiVersionReader("ver"));
             }).AddApiExplorer(options =>
               {
